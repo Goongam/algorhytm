@@ -1,4 +1,4 @@
-//에디터
+//단어뒤집기
 let input;
 try {
     input= require('fs').readFileSync('/dev/stdin').toString();
@@ -14,22 +14,27 @@ let isTag = false;
 
 for(let i = 0; i < input.length; i++){
 
-    if(input[i] === '<') isTag = true;
+    if(input[i] === '<') {
+        result.push(tmp.join(''));
+        tmp = [];
+        isTag = true;
+        result.push(input[i]);
+    }
     
+    else if(input[i] === '>'){
+        result.push(input[i]);
+        isTag = false;
+    }
 
-    if(input[i] === ' ' && tmp.length !== 0 && !isTag){
+    else if(input[i] === ' ' && tmp.length !== 0 && !isTag){
         result.push(tmp.join('')+' ');
         tmp = [];
     }else {
-        if(isTag) tmp.push(input[i]);
+        if(isTag) result.push(input[i]);
         else tmp.unshift(input[i]);
     }
 
-    if(input[i] === '>'){
-        result.push(tmp.join(''));
-        tmp = [];
-        isTag = false;
-    }
+    
 
 
 }
