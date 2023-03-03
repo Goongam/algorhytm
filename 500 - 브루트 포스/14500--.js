@@ -11,6 +11,7 @@ input =
 6 5 4 3 2
 1 2 1 2 1`.trim().split('\n');
 }
+//TODO: DFS로 풀기
 //n세로 m가로
 const [n, m] = input.shift().split(' ').map(n => +n);
 const arr = input.map(line => line.split(' ').map(n => +n));
