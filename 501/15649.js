@@ -1,4 +1,4 @@
-//수 이어 쓰기
+//N과 M (1)
 let input;
 try {
     input= require('fs').readFileSync('/dev/stdin').toString().trim().split(' ');
