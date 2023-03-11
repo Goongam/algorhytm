@@ -23,15 +23,10 @@ find.forEach(n => visit[n] = true);
 
 function countUp(index){
     visit[find[index-1]] = false;
-    // find[index-1] = 0;
 
-    //TODO: 바로다음 수 말고 다음에 올 수있는 수 중 가장 작은 수로(밑 for문처럼), 즉 현재 나의 수보다 큰 수들중 가작 작은 수
-    // if(visit[find[index-1]+1] === false) {
-    //     visit[find[index-1]+1] = true;
-    //     find[index-1] = find[index-1]+1;
-    //     return;
-    // }
-    
+
+    //바로다음 수 말고 다음에 올 수있는 수 중 가장 작은 수로(밑 for문처럼), 즉 현재 나의 수보다 큰 수들중 가작 작은 수
+
     let current = find[index-1];
     for(let i = current+1; i <= length;i++){
         if(visit[i] === false){
