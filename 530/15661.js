@@ -3,12 +3,11 @@ try {
     input= require('fs').readFileSync('/dev/stdin').toString().trim().split('\n');
 } catch (error) {
 input =
-`5
-0 3 1 1 1
-3 0 1 1 1
-1 1 0 1 1
-1 1 1 0 1
-1 1 1 1 0`.trim().split('\n');
+`4
+0 1 2 3
+4 0 5 6
+7 1 0 2
+3 4 5 0`.trim().split('\n');
 }
 
 let length = +input.shift();
@@ -21,6 +20,10 @@ let copyArr = [];
 let sum = 0;
 let visit2 = [];
 let printarr2 = [];
+
+let result = [];
+
+
 function calc(count){
     if(count > 2){
         
@@ -44,28 +47,15 @@ function calc(count){
 }
 
 let min = Infinity;
+
+
 function dfs(index, count){
-    if(count > length/2){
-        sum =  0;
-        //team1 배열
-        copyArr = arr;
-        calc(1);
-        let team1 = sum;
-
-
-        sum = 0;
-
-
-        copyArr = new Array(length).fill(0).map((_,i)=>i).filter(n => !arr.includes(n));
-        calc(1);
-
-        let team2 = sum;
-
-        let diff = Math.abs(team1 - team2);
-        if(min > diff) min = diff;
-
-        
+    if(count > length-1){   
         return;
+    }
+
+    if(count > 0){
+        result.push([...arr]);
     }
 
     for(let i = index; i < length; i++){
@@ -80,6 +70,26 @@ function dfs(index, count){
     }
 }
 
-dfs(0, 1);
+dfs(0, 0);
+
+
+result.forEach((arr)=>{
+    sum =  0;
+    //team1 배열
+    copyArr = arr;
+    calc(1);
+    let team1 = sum;
+
+    //team2
+    sum = 0;
+    copyArr = new Array(length).fill(0).map((_,i)=>i).filter(n => !arr.includes(n));
+    calc(1);
+
+    let team2 = sum;
+
+    let diff = Math.abs(team1 - team2);
+    if(min > diff) min = diff;    
+});
 
 console.log(min);
+
