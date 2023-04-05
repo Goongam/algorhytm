@@ -76,11 +76,11 @@ bfs();
 
 let max = 0;
 map.map(line=>line.map(day => {
-    if(day === 0) {
-        console.log(-1);
-        process.exit();
+    if(day === 0) { // 안익은 토마토가 있는 경우
+        console.log(-1); 
+        process.exit(); //종료
     }
-    if(max < day) max = day;
+    if(max < day) max = day; //최대일수 출력
 }))
 
 

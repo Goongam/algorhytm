@@ -3,41 +3,41 @@ let input;
 try {
   input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 } catch {
-  input = `3
-1
-4
-5
-7
-9
-6
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30`
+input = `5 4
+1 2
+3 4
+1 4
+2 2`
     .toString()
     .trim()
     .split("\n");
 }
-input = input.map(Number);
-let result = [];
-for(let i = 1; i <= 30; i++) if(!input.includes(i)) result.push(i);
-console.log(result.join('\n'));
 
+const [length, _] = input.shift().split(' ').map(Number);
+let arr = [];
+for(let i = 1; i <= length; i++){
+  arr.push(i);
+}
+
+// console.log(arr);
+
+// console.log(arr);
+
+input.forEach((line)=>{
+  let [start, end] = line.split(' ').map(Number);
+
+  let sp = arr.slice(start-1, end);
+  let reverse = sp.reverse();
+
+  let idx = start-1;
+  reverse.forEach(num =>{
+    arr[idx] = num;
+    idx++
+  })
+
+  
+  
+})
+
+console.log(arr.join(' '));
 
