@@ -3,41 +3,25 @@ let input;
 try {
   input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 } catch {
-input = `5 4
-1 2
-3 4
-1 4
-2 2`
+input = `2
+3 ABC
+5 /HTP`
     .toString()
     .trim()
     .split("\n");
 }
 
-const [length, _] = input.shift().split(' ').map(Number);
-let arr = [];
-for(let i = 1; i <= length; i++){
-  arr.push(i);
-}
+input.shift();
 
-// console.log(arr);
-
-// console.log(arr);
-
-input.forEach((line)=>{
-  let [start, end] = line.split(' ').map(Number);
-
-  let sp = arr.slice(start-1, end);
-  let reverse = sp.reverse();
-
-  let idx = start-1;
-  reverse.forEach(num =>{
-    arr[idx] = num;
-    idx++
-  })
-
+input.forEach(line =>{
+  const [length, str] = line.split(' ');
+  let result = "";
+  str.split('').forEach((s)=>{
+      for(let i = 0; i < length ; i++){
+          result += s;
+      }
+  });
+  console.log(result);
   
-  
-})
-
-console.log(arr.join(' '));
+});
 
